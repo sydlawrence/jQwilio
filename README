@@ -1,0 +1,30 @@
+Very much a work in progress
+
+var phone = $.jQwilio({
+    token: "",
+    onReady: function() {
+        $("#call").attr("disabled", false).val("Call");
+    },
+    onIncoming: function(connection) {
+        console.log("Call from "+connection.parameters.From);
+        connection.accept();
+    }
+});
+
+$(document).ready(function() {
+
+    $('#hangup').click(function() {
+        phone.connection.disconnect();
+    })
+
+    $('#accept').click(function() {
+        phone.connection.accept();
+    })
+
+    $('#reject').click(function() {
+        phone.connection.reject();
+    });
+
+    // this bit needs to be worked on
+    //phone.dial(parms)
+});

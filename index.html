@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQwilio Demo</title>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jQwilio.js"></script>
+  <style>
+    #code {
+      display:block;
+      white-space: pre;
+    }
+  </style>
+  </head>
+  <body>
+
+    <header>
+  		<h1>jQwilio by <a href="http://twitter.sydlawrence.com">@sydlawrence</a></h1>
+  	</header>
+  	<div id="main">
+
+      <h2>This is very much NOT complete</h2>
+
+    <script id="code">
+      var phone = $.jQwilio({
+          token: "",
+          onReady: function() {
+              $("#call").attr("disabled", false).val("Call");
+          },
+          onIncoming: function(connection) {
+              console.log("Call from "+connection.parameters.From);
+              connection.accept();
+          }
+      });
+
+      $(document).ready(function() {
+
+        $('#hangup').click(function() {
+            phone.connection.disconnect();
+        })
+
+        $('#accept').click(function() {
+            phone.connection.accept();
+        })
+
+        $('#reject').click(function() {
+            phone.connection.reject();
+        });
+
+        // this bit needs to be worked on
+        //phone.dial(parms)
+      });
+
+      </script>
+
+
+    </div>
+
+
+
+  </body>
+</html>
